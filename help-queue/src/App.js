@@ -21,6 +21,16 @@ class App extends Component {
  */
  
 class App extends Component {
+    
+    //Set state. 1-st thing
+    constructor() {
+        super();
+        this.state ={
+          now_serving: "gord",
+          name_queue:["jenny","victoria","cici"]
+        };
+    }
+    
     render() {
         return (
            <div>
