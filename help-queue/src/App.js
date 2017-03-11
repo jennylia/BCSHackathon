@@ -16,10 +16,15 @@ class App extends Component {
     //change state, called only once after it is rendered to the dom
     // great time for real time database
     componentDidMount(){
-        //this.setState({
-        //    now_serving: 2,
-        //    queue:[1,2]
-        //})
+        const rootRef = firebase.database().ref().child('react');
+        //create a reference to speedRef
+        const speedRef = rootRef.child('now_serving');
+        //on sync data in real time
+        speedRef.on('value', snap=>{
+            this.setState({
+                now_serving: snap.val()
+            });
+        })
     }
 
 
