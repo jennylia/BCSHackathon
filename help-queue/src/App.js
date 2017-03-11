@@ -14,6 +14,8 @@ class App extends Component {
             //name_queue:["jenny","victoria",3]
         };
         this.deleteStudent = this.deleteStudent.bind(this);
+        this.incrementServe = this.incrementServe.bind(this);
+
     }
 
     //change state, called only once after it is rendered to the dom
@@ -64,6 +66,11 @@ class App extends Component {
         studentQueue.removeAll();
     }
 
+    incrementServe(){
+        var nextNumber = this.state.now_serving + 1 ;
+        const nowServe = firebase.database().ref().child('now_serving');
+        nowServe.set(nextNumber);
+    }
     render() {
         return (
             <div className="App">
@@ -83,6 +90,7 @@ class App extends Component {
                 <h2>Adding a student</h2>
                 <StudentForm nowServing={this.state.now_serving}></StudentForm>
                 <button onClick={this.deleteStudent}>Delete</button>
+                <button onClick={this.incrementServe}>Next Student</button>
 
             </div>
         );

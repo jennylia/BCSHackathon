@@ -36,8 +36,8 @@ export default class StudentForm extends Component {
         );
 
         //update the next number
-        const nowServe = firebase.database().ref().child('now_serving');
-        nowServe.set(nextNumber);
+        //const nowServe = firebase.database().ref().child('now_serving');
+        //nowServe.set(nextNumber);
 
 
     }
