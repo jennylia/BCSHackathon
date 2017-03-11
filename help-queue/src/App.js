@@ -74,23 +74,17 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h2>Welcome to React</h2>
-                </div>
-                <h1>Now Serving Student: {this.state.now_serving}</h1>
+                <div className="jumbotron"><h1>Help Queue</h1></div>
 
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
+                <h1>Now Serving Student: {this.state.now_serving}</h1>
 
                 <QueueDisplay studentQueue={this.state.students}/>
 
 
                 <h2>Adding a student</h2>
                 <StudentForm nowServing={this.state.now_serving}></StudentForm>
-                <button onClick={this.deleteStudent}>Delete</button>
-                <button onClick={this.incrementServe}>Next Student</button>
+                <button className="btn-danger" onClick={this.deleteStudent}>Delete</button>
+                <button className="btn-primary" onClick={this.incrementServe}>Next Student</button>
 
             </div>
         );
