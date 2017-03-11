@@ -28,9 +28,12 @@ class App extends Component {
 
         const studentQueue = firebase.database().ref().child('name_queue');
         studentQueue.on('value', snap=>{
-            console.log(snap.val())
+            var name_queue = snap.val()
+            var students = Object.keys(snap.val()).map((key, value) => key)
+            console.log(name_queue, students)
             this.setState({
-                name_queue: snap.val()
+                name_queue: name_queue,
+                students: students
             });
         })
     }
@@ -50,7 +53,8 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
-                <h1>{this.state.name_queue}</h1>
+                {this.state.students}
+
             </div>
         );
     }
