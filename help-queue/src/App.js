@@ -13,6 +13,17 @@ class App extends Component {
         };
     }
 
+    //change state, called only once after it is rendered to the dom
+    // great time for real time database
+    componentDidMount(){
+        //this.setState({
+        //    now_serving: 2,
+        //    queue:[1,2]
+        //})
+    }
+
+
+
     render() {
         return (
             <div className="App">
@@ -25,6 +36,8 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
+
+                {this.state.queue}
             </div>
         );
     }
