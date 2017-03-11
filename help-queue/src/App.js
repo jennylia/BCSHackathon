@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
 import StudentForm from './components/StudentForm'
-
+import  QueueDisplay from './components/QueueDisplay'
 class App extends Component {
 
     //Set state. 1-st thing
@@ -77,16 +77,19 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
-                {this.state.students}
+                <QueueDisplay studentQueue={this.state.students}/>
+
 
                 <h2>Adding a student</h2>
                 <StudentForm nowServing={this.state.now_serving}></StudentForm>
                 <button onClick={this.deleteStudent}>Delete</button>
-                <button onClick={this.deleteStudent}>Delete All Students</button>
 
             </div>
         );
     }
 }
+
+
+
 
 export default App;
