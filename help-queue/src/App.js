@@ -10,7 +10,7 @@ class App extends Component {
         super();
         this.state ={
           now_serving: 1,
-            queue:["jenny","victoria",3]
+            //name_queue:["jenny","victoria",3]
         };
     }
 
@@ -23,6 +23,14 @@ class App extends Component {
             console.log(snap.val())
             this.setState({
                 now_serving: snap.val()
+            });
+        })
+
+        const studentQueue = firebase.database().ref().child('name_queue');
+        studentQueue.on('value', snap=>{
+            console.log(snap.val())
+            this.setState({
+                name_queue: snap.val()
             });
         })
     }
@@ -42,7 +50,7 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
-                <h1>{this.state.queue}</h1>
+                <h1>{this.state.name_queue}</h1>
             </div>
         );
     }
