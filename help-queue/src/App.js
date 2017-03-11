@@ -30,10 +30,11 @@ class App extends Component {
         const studentQueue = firebase.database().ref().child('name_queue');
         studentQueue.on('value', snap=>{
             var name_queue = snap.val()
-            var students = Object.keys(snap.val()).map((key, value) => key)
-            console.log(name_queue, students)
+            //debugger
+            var students = Object.values(name_queue).map(({studentName, studentNumber}) => studentName)
+            console.log("name queue is", name_queue)
+            console.log("student is", students)
             this.setState({
-                name_queue: name_queue,
                 students: students
             });
         })

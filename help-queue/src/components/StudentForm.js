@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import * as firebase from 'firebase';
 
 export default class StudentForm extends Component {
     constructor(props) {
@@ -11,12 +12,24 @@ export default class StudentForm extends Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        //Update the firebase
     }
 
     handleSubmit(event) {
-        //alert('A name was submitted: ' + this.state.value);
+        console.log('A name was submitted: ' + this.state.value);
+        var currentName = this.state.value;
         event.preventDefault();
+
+        var studentQueue = firebase.database().ref().child('name_queue');
+        var studentObj = {
+            studentName: currentName,
+            studentNumber: 100
+        }
+        //var nowServier = firebase.database().ref.child('now_serving');
+        studentQueue.push(
+            studentObj
+        );
+
+
     }
 
     render() {
