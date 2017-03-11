@@ -34,8 +34,8 @@ class App extends Component {
     render() {
         return (
            <div>
-               <NowServing />
-               <NameQueue />
+               <NowServing studentName = {this.state.now_serving}/>
+               <NameQueue studentQueue = {this.state.name_queue}/>
            </div>
         );
      }
@@ -43,7 +43,7 @@ class App extends Component {
 
 class NowServing extends Component {
      render() {
-         var name = "Jane";
+         var name = this.props.studentName;
          return(
              <div>
                  <h2>Now Serving: </h2>
@@ -60,8 +60,17 @@ class Timer extends Component {
 
 class NameQueue extends Component {
      render() {
+         var rows = [];
+         this.props.studentQueue.forEach((student) => {
+             rows.push(<tr>{student}</tr>);
+         });
          return(
-             <h2>Queue: </h2>
+             <div>
+                 <h2>Queue: </h2>
+                 <table>
+                    <tbody>{rows}</tbody>
+                 </table>
+             </div>
          );
      }
 }
