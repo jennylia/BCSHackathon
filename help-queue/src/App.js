@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
+import StudentForm from './components/StudentForm'
 
 class App extends Component {
 
@@ -54,6 +55,9 @@ class App extends Component {
                 </p>
 
                 {this.state.students}
+
+                <h2>Adding a student</h2>
+                <StudentForm></StudentForm>
 
             </div>
         );
