@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as firebase from 'firebase';
 
 export default class QueueDisplay extends Component {
     render(){

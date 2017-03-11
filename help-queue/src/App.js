@@ -4,6 +4,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import StudentForm from './components/StudentForm'
 import  QueueDisplay from './components/QueueDisplay'
+import Timer from './components/Timer'
 class App extends Component {
 
     //Set state. 1-st thing
@@ -11,7 +12,7 @@ class App extends Component {
         super();
         this.state ={
           now_serving: 1,
-            //name_queue:["jenny","victoria",3]
+            timerVal: 300,
         };
         this.deleteStudent = this.deleteStudent.bind(this);
         this.incrementServe = this.incrementServe.bind(this);
@@ -69,6 +70,10 @@ class App extends Component {
     incrementServe(){
         var nextNumber = this.state.now_serving + 1 ;
         const nowServe = firebase.database().ref().child('now_serving');
+
+        this.setState({
+            timerVal: 300
+        })
         nowServe.set(nextNumber);
     }
     render() {
@@ -79,7 +84,7 @@ class App extends Component {
                 <h1>Now Serving Student: {this.state.now_serving}</h1>
 
                 <QueueDisplay studentQueue={this.state.students}/>
-
+                <Timer duration={this.state.timerVal}/>
 
                 <h2>Adding a student</h2>
                 <StudentForm nowServing={this.state.now_serving}></StudentForm>
