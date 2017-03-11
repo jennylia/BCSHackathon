@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
 
 class App extends Component {
 
@@ -9,18 +10,17 @@ class App extends Component {
         super();
         this.state ={
           now_serving: 1,
-            queue:[]
+            queue:["jenny","victoria",3]
         };
     }
 
     //change state, called only once after it is rendered to the dom
     // great time for real time database
     componentDidMount(){
-        const rootRef = firebase.database().ref().child('react');
-        //create a reference to speedRef
-        const speedRef = rootRef.child('now_serving');
-        //on sync data in real time
-        speedRef.on('value', snap=>{
+        const nowServe = firebase.database().ref().child('now_serving');
+
+        nowServe.on('value', snap=>{
+            console.log(snap.val())
             this.setState({
                 now_serving: snap.val()
             });
@@ -36,13 +36,13 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h2>Welcome to React</h2>
                 </div>
-                <h1>{this.state.now_serving}</h1>
+                <h1>Now Serving Student: {this.state.now_serving}</h1>
 
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
 
-                {this.state.queue}
+                <h1>{this.state.queue}</h1>
             </div>
         );
     }

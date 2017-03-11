@@ -10,6 +10,7 @@ var config = {
     databaseURL: "https://helpqueue-b72fd.firebaseio.com",
     storageBucket: "helpqueue-b72fd.appspot.com",
 };
+
 firebase.initializeApp(config);
 
 ReactDOM.render(
