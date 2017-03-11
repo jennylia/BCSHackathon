@@ -32,8 +32,8 @@ class App extends Component {
             var name_queue = snap.val()
             //debugger
             var students = Object.values(name_queue).map(({studentName, studentNumber}) => studentName)
-            console.log("name queue is", name_queue)
-            console.log("student is", students)
+            //console.log("name queue is", name_queue)
+            //console.log("student is", students)
             this.setState({
                 students: students
             });
@@ -58,7 +58,7 @@ class App extends Component {
                 {this.state.students}
 
                 <h2>Adding a student</h2>
-                <StudentForm></StudentForm>
+                <StudentForm nowServing={this.state.now_serving}></StudentForm>
 
             </div>
         );

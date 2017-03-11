@@ -1,10 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import * as firebase from 'firebase';
 
 export default class StudentForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            value: '',
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,15 +21,23 @@ export default class StudentForm extends Component {
         var currentName = this.state.value;
         event.preventDefault();
 
+        console.log("what is nowServe", this.props.nowServing);
+
+        var nextNumber = this.props.nowServing + 1 ;
+        console.log("the next Number is:", nextNumber);
+
         var studentQueue = firebase.database().ref().child('name_queue');
         var studentObj = {
             studentName: currentName,
-            studentNumber: 100
+            studentNumber: nextNumber
         }
-        //var nowServier = firebase.database().ref.child('now_serving');
         studentQueue.push(
             studentObj
         );
+
+        //update the next number
+        const nowServe = firebase.database().ref().child('now_serving');
+        nowServe.set(nextNumber);
 
 
     }
