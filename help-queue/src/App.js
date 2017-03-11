@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/*
 class App extends Component {
   render() {
-    return (
+     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -17,5 +18,48 @@ class App extends Component {
     );
   }
 }
+ */
+ 
+class App extends Component {
+    render() {
+        return (
+           <div>
+               <NowServing />
+               <NameQueue />
+           </div>
+        );
+     }
+}
+
+class NowServing extends Component {
+     render() {
+         var name = "Jane";
+         return(
+             <div>
+                 <h2>Now Serving: </h2>
+                 <h3>{name}</h3>
+             </div>
+         );
+     }
+}
+
+class Timer extends Component {
+     render() {
+     }
+}
+
+class NameQueue extends Component {
+     render() {
+         return(
+             <h2>Queue: </h2>
+         );
+     }
+}
+
+class QueueEntry extends Component {
+     render() {
+     }
+}
+
 
 export default App;
