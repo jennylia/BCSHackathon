@@ -13,6 +13,7 @@ class App extends Component {
           now_serving: 1,
             //name_queue:["jenny","victoria",3]
         };
+        this.deleteStudent = this.deleteStudent.bind(this);
     }
 
     //change state, called only once after it is rendered to the dom
@@ -40,7 +41,28 @@ class App extends Component {
         })
     }
 
+    deleteStudent(){
+        console.log("issued a delete student command")
+        const studentQueue = firebase.database().ref().child('name_queue');
+        console.log(studentQueue);
+        var list = [];
+        studentQueue.on('value', snap=> {
+            var name_queue = snap.val()
+            //debugger
+            list = Object.keys(name_queue);
 
+        });
+
+        console.log(list[0]);
+        var firstkey = list[0]
+        studentQueue.child(firstkey).remove();
+    }
+
+    deleteAllStudents(){
+        console.log("issued a deleteAll student command")
+        const studentQueue = firebase.database().ref().child('name_queue');
+        studentQueue.removeAll();
+    }
 
     render() {
         return (
@@ -59,6 +81,8 @@ class App extends Component {
 
                 <h2>Adding a student</h2>
                 <StudentForm nowServing={this.state.now_serving}></StudentForm>
+                <button onClick={this.deleteStudent}>Delete</button>
+                <button onClick={this.deleteStudent}>Delete All Students</button>
 
             </div>
         );
