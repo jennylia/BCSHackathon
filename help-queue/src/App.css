@@ -22,3 +22,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+.nowserving {
+    background-color: #888;
+    width: 300px;
+    padding: 20px;
+}
