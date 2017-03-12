@@ -23,7 +23,8 @@ export default class StudentForm extends Component {
 
         console.log("what is nowServe", this.props.nowServing);
 
-        var nextNumber = this.props.nowServing + 1 ;
+
+        var nextNumber = this.props.studentLength + 1 ;
         console.log("the next Number is:", nextNumber);
 
         var studentQueue = firebase.database().ref().child('name_queue');
@@ -36,10 +37,8 @@ export default class StudentForm extends Component {
         );
 
         //update the next number
-        //const nowServe = firebase.database().ref().child('now_serving');
-        //nowServe.set(nextNumber);
-
-
+        const studentLength = firebase.database().ref().child('studentLength');
+        studentLength.set(nextNumber);
     }
 
     render() {

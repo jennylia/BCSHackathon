@@ -13,6 +13,7 @@ class App extends Component {
         this.state ={
           now_serving: 1,
             timerVal: 300,
+            studentLength: 1,
         };
         this.deleteStudent = this.deleteStudent.bind(this);
         this.incrementServe = this.incrementServe.bind(this);
@@ -42,6 +43,14 @@ class App extends Component {
                 students: students
             });
         })
+
+        const studentLength = firebase.database().ref().child('studentLength');
+        studentLength.on('value', snap=>{
+            console.log(snap.val())
+            this.setState({
+                studentLength: snap.val()
+            });
+        })
     }
 
     deleteStudent(){
@@ -61,11 +70,6 @@ class App extends Component {
         studentQueue.child(firstkey).remove();
     }
 
-    deleteAllStudents(){
-        console.log("issued a deleteAll student command")
-        const studentQueue = firebase.database().ref().child('name_queue');
-        studentQueue.removeAll();
-    }
 
     incrementServe(){
         var nextNumber = this.state.now_serving + 1 ;
@@ -87,7 +91,7 @@ class App extends Component {
                 <Timer duration={this.state.timerVal}/>
 
                 <h2>Adding a student</h2>
-                <StudentForm nowServing={this.state.now_serving}></StudentForm>
+                <StudentForm nowServing={this.state.now_serving} studentLength={this.state.studentLength}></StudentForm>
                 <button className="btn-danger" onClick={this.deleteStudent}>Delete</button>
                 <button className="btn-primary" onClick={this.incrementServe}>Next Student</button>
 
